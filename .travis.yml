@@ -1,0 +1,12 @@
+sudo: required #need super level permissions for build
+services:
+  - docker #needs docker installed
+
+before_install: #what happens before tests/deploy
+  - docker build -t sbollman011/docker-react -f Dockerfile.dev . #have this command run to build, name it sbollman011/docker-react(could be anything)
+
+script:
+  - docker run -e CI=true sbollman011/docker-react npm run test -- --coverage
+
+
+
