@@ -4,9 +4,23 @@ services:
 
 before_install: #what happens before tests/deploy
   - docker build -t sbollman011/docker-react -f Dockerfile.dev . #have this command run to build, name it sbollman011/docker-react(could be anything)
+  #initial image
 
-script:
-  - docker run -e CI=true sbollman011/docker-react npm run test -- --coverage
+script: 
+  - docker run -e CI=true sbollman011/docker-react npm run test -- --coverage #run test with coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker"
+  env: "docker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-904952335648"
+  bucket_path: "docker" #initial path == app
+  on:
+    branch: main #anytime we push to main, deploy
+  access_key_id: $access_key_id
+  secret_access_key:
+    secure:"$secret_access_key"
 
 
 
