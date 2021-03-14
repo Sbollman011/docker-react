@@ -20,7 +20,7 @@ deploy:
     branch: main #anytime we push to main, deploy
   access_key_id: $access_key_id
   secret_access_key:
-    secure:"$secret_access_key"
+    secure: "$secret_access_key"
 
 
 
