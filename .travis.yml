@@ -18,9 +18,8 @@ deploy:
   bucket_path: "docker" #initial path == app
   on:
     branch: main #anytime we push to main, deploy
-  access_key_id: $access_key_id
-  secret_access_key:
-    secure: "$secret_access_key"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
 
 
 
